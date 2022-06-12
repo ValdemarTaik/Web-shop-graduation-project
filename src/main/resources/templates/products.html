@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Product list</title>
+    <!--STOMP-->
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+    <!--app.js dependance: jquery-->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/product.js"></script>
+</head>
+<body>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+
+<table border="1" align="center" id="table">
+    <tr>
+        <td>Category</td>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.title}"></td>
+
+    </tr>
+</table>
+
+<aside class="sidebar hidden-xs col-sm-4 col-md-3">
+       <div class="menu-categories">
+           <ul class>
+               <li>
+                   <a target="_self" href="@{/products/protein">Протеин</a>
+               </li>
+               <li>
+                   <a target="_self" href="/#">Креатин</a>
+               </li>
+               <li>
+                   <a target="_self" href="/#">Бца</a>
+               </li>
+           </ul>
+       </div>
+</aside>
+
+
+
+
+<table border="1" align="center" id="table1">
+    <tr>
+        <td>Title</td>
+        <td>Price</td>
+        <td></td>
+    </tr>
+    <tr th:each="product : ${products}" >
+        <td th:text="${product.title}"></td>
+        <td th:text="${product.price}"></td>
+        <td sec:authorize="isAuthenticated()"><a th:href="@{/products/{id}/bucket(id=${product.id})}">Add to bucket</a></td>
+        <td sec:authorize="!isAuthenticated()"><a> Please <a th:href="@{/login}">Login</a></a></td>
+    </tr>
+</table>
+
+
+
+<td sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')">
+
+
+<form style="text-align: center">
+    <table align="center">
+        <tr>
+            <td>Title</td>
+            <td><input type="text" id="title"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input type="number" id="price"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td><input type="text" id="category"></td>
+        </tr>
+    </table>
+    <button id="send" type="submit">Submit</button>
+</form>
+</td>
+
+</body>
+</html>
