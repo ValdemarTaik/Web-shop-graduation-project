@@ -54,7 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/users").hasAnyAuthority(Role.ADMIN.name()) //могут просматривать только админ
 
-
                 .antMatchers("/registration").permitAll()
                 .anyRequest().permitAll()
                 .and()

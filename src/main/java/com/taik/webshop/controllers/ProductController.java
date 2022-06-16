@@ -47,12 +47,7 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    //aasdasdsadas
-    @PostMapping
-    public ResponseEntity<Void> addProduct(ProductDto dto) {
-        productService.addProduct(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
+
 
     //new
 //    @PostMapping("/{id}/bucket")
@@ -63,10 +58,6 @@ public class ProductController {
 //        return "redirect:/bucket";
 //    }
 
-    @MessageMapping("/products")
-    public void messageAddProduct(ProductDto dto) {
-        productService.addProduct(dto);
-    }
 
     @GetMapping("/{id}")
     @ResponseBody

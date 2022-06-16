@@ -22,16 +22,14 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final UserService userService;
     private final BucketService bucketService;
-    private final SimpMessagingTemplate template;
+   // private final SimpMessagingTemplate template;
 
     public ProductServiceImpl(ProductRepository productRepository,
                               UserService userService,
-                              BucketService bucketService,
-                              SimpMessagingTemplate template) {
+                              BucketService bucketService) {
         this.productRepository = productRepository;
         this.userService = userService;
         this.bucketService = bucketService;
-        this.template = template;
     }
 
     @Override
@@ -70,15 +68,6 @@ public class ProductServiceImpl implements ProductService {
         bucketService.deleteProducts(bucket, Collections.singletonList(productId));
     }
 
-    @Override
-    @Transactional
-    public void addProduct(ProductDto dto) {
-        Product product = mapper.toProduct(dto);
-        Product savedProduct = productRepository.save(product);
-
-        template.convertAndSend("/topic/products",
-                ProductMapper.MAPPER.fromProduct(savedProduct));
-    }
 
     @Override
     public ProductDto getById(Long id) {
@@ -86,6 +75,7 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.MAPPER.fromProduct(product);
     }
 
+    // ------------------------------------------------------------------------------------
     @Override
     public List<ProductDto> getProductByCategory(Category category) {
         return mapper.fromProductList(productRepository.findAll());
