@@ -29,26 +29,27 @@ public class ProductController {
     }
 
     @GetMapping
-    public String list(Model model){
+    public String list(Model model) {
         List<ProductDto> listProducts = productService.getAll();
         List<CategoriesDto> listCategories = categoriesService.getAll();
         model.addAttribute("products", listProducts);
         model.addAttribute("categories", listCategories);
         return "products";
     }
+
     //пас параметр
     @GetMapping("/{id}/bucket")
-    public String addBucket(@PathVariable Long id, Principal principal){
-        if(principal == null){
+    public String addBucket(@PathVariable Long id, Principal principal) {
+        if (principal == null) {
             return "redirect:/products";
         }
         productService.addToUserBucket(id, principal.getName());
         return "redirect:/products";
     }
 
-//aasdasdsadas
+    //aasdasdsadas
     @PostMapping
-    public ResponseEntity<Void> addProduct(ProductDto dto){
+    public ResponseEntity<Void> addProduct(ProductDto dto) {
         productService.addProduct(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -63,21 +64,20 @@ public class ProductController {
 //    }
 
     @MessageMapping("/products")
-    public void messageAddProduct(ProductDto dto){
+    public void messageAddProduct(ProductDto dto) {
         productService.addProduct(dto);
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ProductDto getById(@PathVariable Long id){
+    public ProductDto getById(@PathVariable Long id) {
         return productService.getById(id);
     }
 
     //вывод под категории
     @GetMapping("/protein")
-    public String listByProtein(Model model){
+    public String listByProtein(Model model) {
         Long SQL = Long.valueOf("SELECT product_id from products_categories WHERE category_id = '1' ");
-
 
 
 //        List<ProductDto> listProducts = productService.getById();
@@ -89,6 +89,22 @@ public class ProductController {
 //        model.addAttribute("products", listProducts);
 
         return "products/protein";
+    }
+
+    @GetMapping("/creatin")
+    public String listByCreatin(Model model) {
+        Long SQL = Long.valueOf("SELECT product_id from products_categories WHERE category_id = '2' ");
+
+
+        return "products/creatin";
+    }
+
+    @GetMapping("/bca")
+    public String listByBca(Model model) {
+        Long SQL = Long.valueOf("SELECT product_id from products_categories WHERE category_id = '3' ");
+
+
+        return "products/bca";
     }
 
 

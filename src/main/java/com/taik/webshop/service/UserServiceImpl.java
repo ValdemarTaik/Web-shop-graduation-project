@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean save(UserDto userDto) {
-        if(!Objects.equals(userDto.getPassword(), userDto.getMatchingPassword())){
+        if (!Objects.equals(userDto.getPassword(), userDto.getMatchingPassword())) {
             throw new RuntimeException("Password is not equal");
         }
         User user = User.builder()
@@ -60,20 +60,20 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateProfile(UserDto dto) {
         User savedUser = userRepository.findFirstByName(dto.getUsername());
-        if(savedUser == null){
+        if (savedUser == null) {
             throw new RuntimeException("User not found by name " + dto.getUsername());
         }
 
         boolean changed = false;
-        if(dto.getPassword() != null && !dto.getPassword().isEmpty()){
+        if (dto.getPassword() != null && !dto.getPassword().isEmpty()) {
             savedUser.setPassword(passwordEncoder.encode(dto.getPassword()));
             changed = true;
         }
-        if(!Objects.equals(dto.getEmail(), savedUser.getEmail())){
+        if (!Objects.equals(dto.getEmail(), savedUser.getEmail())) {
             savedUser.setEmail(dto.getEmail());
             changed = true;
         }
-        if(changed){
+        if (changed) {
             userRepository.save(savedUser);
         }
     }
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findFirstByName(username);
-        if(user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("User not found with name: " + username);
         }
 
@@ -99,9 +99,10 @@ public class UserServiceImpl implements UserService {
                 roles);
     }
 
-    private UserDto toDto(User user){
+    private UserDto toDto(User user) {
         return UserDto.builder()
                 .username(user.getName())
+                .email(user.getEmail())
                 .email(user.getEmail())
                 .build();
     }

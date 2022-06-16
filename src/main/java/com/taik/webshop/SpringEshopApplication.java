@@ -12,8 +12,7 @@ public class SpringEshopApplication {
 
         ConfigurableApplicationContext context = SpringApplication.run(SpringEshopApplication.class, args);
 
-//        PasswordEncoder encoder = context.getBean(PasswordEncoder.class);
-//        System.out.println(encoder.encode("pass"));
+
     }
 }
 

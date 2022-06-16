@@ -7,7 +7,7 @@
 <body>
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <h2>Your bucket</h2>
-<h3>All sum -> <b th:text="${bucket.sum}">1000</b></h3>
+<h3>All sum -> <b th:text="${bucket.sum}"></b></h3>
 
 <table border="1" align="center">
     <tr>
@@ -23,7 +23,7 @@
         <td th:text="${detail.price}"></td>
         <td th:text="${detail.sum}"></td>
 
-        <td> <a href="@{/{id}/bucket(id=${product.id})}">Remove</a></td>
+        <td> <a href="@{/{id}/bucket(id=${product.id})/delete}">Remove</a></td>
     </tr>
 </table>
 

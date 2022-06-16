@@ -9,23 +9,23 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
     @RequestMapping({"", "/"})
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
     @RequestMapping("/login-error") //чтобы пользователь попал на 404-page
-    public String loginError(Model model){
+    public String loginError(Model model) {
         model.addAttribute("loginError", true);
         return "login";
     }
 
     @RequestMapping("/registration")
-    public ModelAndView registration(ModelAndView modelAndView){
+    public ModelAndView registration(ModelAndView modelAndView) {
         modelAndView.setViewName("registration");
         modelAndView.addObject("user", new UserDto());
         return modelAndView;

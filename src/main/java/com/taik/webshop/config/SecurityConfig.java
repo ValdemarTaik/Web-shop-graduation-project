@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/users").hasAnyAuthority(Role.ADMIN.name(), Role.MANAGER.name()) //могут просматривать только админ или менеджер
+                .antMatchers("/users").hasAnyAuthority(Role.ADMIN.name()) //могут просматривать только админ
 
 
                 .antMatchers("/registration").permitAll()

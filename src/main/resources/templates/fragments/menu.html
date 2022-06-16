@@ -10,7 +10,7 @@
         <td align="center">
             <table>
                 <tr>
-                    <td>Menu -></td>
+
                     <td><a th:href="@{/}">Home</a></td>
                     <td><a th:href="@{/products}">Products</a></td>
                     <td sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')"><a th:href="@{/users}">Users</a></td>

@@ -26,11 +26,10 @@ public class BucketController {
     }
 
     @GetMapping("/bucket")
-    public String aboutBucket(Model model, Principal principal){
-        if(principal == null){
+    public String aboutBucket(Model model, Principal principal) {
+        if (principal == null) {
             model.addAttribute("bucket", new BucketDto());
-        }
-        else {
+        } else {
             BucketDto bucketDto = bucketService.getBucketByUser(principal.getName());
             model.addAttribute("bucket", bucketDto);
         }
@@ -39,23 +38,20 @@ public class BucketController {
     }
 
     @PostMapping("/bucket")
-    public String commitBucket(Principal principal){
-        if(principal != null){
+    public String commitBucket(Principal principal) {
+        if (principal != null) {
             bucketService.commitBucketToOrder(principal.getName());
         }
         return "redirect:/bucket";
     }
 
     @PostMapping("/{id}/bucket/delete")
-    public String  deleteProduct(@PathVariable Long id, Principal principal){
+    public String deleteProduct(@PathVariable Long id, Principal principal) {
 //        List<ProductDto> listProducts = productService.getAll();
 //        model.addAttribute("products", listProducts);
-          productService.deleteFromUserBucketProduct(id, principal.getName());
+        productService.deleteFromUserBucketProduct(id, principal.getName());
         return "redirect:/bucket";
     }
-
-
-
 
 
 }

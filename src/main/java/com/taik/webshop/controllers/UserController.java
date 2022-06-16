@@ -23,14 +23,14 @@ public class UserController {
     }
 
     @GetMapping
-    public String userList(Model model){
+    public String userList(Model model) {
         model.addAttribute("users", userService.getAll());
         return "userList";
     }
 
 
     @GetMapping("/new")
-    public String newUser(Model model){
+    public String newUser(Model model) {
         System.out.println("Called method newUser");
         model.addAttribute("user", new UserDto());
         return "user";
@@ -39,18 +39,17 @@ public class UserController {
     @PostAuthorize("isAuthenticated() and #username == authentication.principal.username")
     @GetMapping("/{name}/roles")
     @ResponseBody
-    public String getRoles(@PathVariable("name") String username){
+    public String getRoles(@PathVariable("name") String username) {
         System.out.println("Called method getRoles");
         User byName = userService.findByName(username);
         return byName.getRole().name();
     }
 
     @PostMapping("/new")
-    public String saveUser(UserDto dto, Model model){
-        if(userService.save(dto)){
+    public String saveUser(UserDto dto, Model model) {
+        if (userService.save(dto)) {
             return "redirect:/users";
-        }
-        else {
+        } else {
             model.addAttribute("user", dto);
             return "user";
         }
@@ -58,8 +57,8 @@ public class UserController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile")
-    public String profileUser(Model model, Principal principal){
-        if(principal == null){
+    public String profileUser(Model model, Principal principal) {
+        if (principal == null) {
             throw new RuntimeException("You are not authorize");
         }
         User user = userService.findByName(principal.getName());
@@ -74,14 +73,14 @@ public class UserController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/profile")
-    public String updateProfileUser(UserDto dto, Model model, Principal principal){
-        if(principal == null
-                || !Objects.equals(principal.getName(), dto.getUsername())){
+    public String updateProfileUser(UserDto dto, Model model, Principal principal) {
+        if (principal == null
+                || !Objects.equals(principal.getName(), dto.getUsername())) {
             throw new RuntimeException("You are not authorize");
         }
-        if(dto.getPassword() != null
+        if (dto.getPassword() != null
                 && !dto.getPassword().isEmpty()
-                && !Objects.equals(dto.getPassword(), dto.getMatchingPassword())){
+                && !Objects.equals(dto.getPassword(), dto.getMatchingPassword())) {
             model.addAttribute("user", dto);
             return "profile";
         }

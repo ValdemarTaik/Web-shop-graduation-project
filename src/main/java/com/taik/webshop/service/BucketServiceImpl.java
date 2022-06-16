@@ -47,6 +47,7 @@ public class BucketServiceImpl implements BucketService {
 
     private List<Product> getCollectRefProductsByIds(List<Long> productIds) {
         return productIds.stream()
+                //по айди собираем наши продукты
                 .map(productRepository::getOne)
                 .collect(Collectors.toList());
     }
@@ -123,7 +124,7 @@ public class BucketServiceImpl implements BucketService {
                 .map(pair -> new OrderDetails(order, pair.getKey(), pair.getValue()))
                 .collect(Collectors.toList());
 
-        BigDecimal total = new BigDecimal(orderDetails.stream()
+        BigDecimal total = BigDecimal.valueOf(orderDetails.stream()
                 .map(detail -> detail.getPrice().multiply(detail.getAmount()))
                 .mapToDouble(BigDecimal::doubleValue).sum());
 

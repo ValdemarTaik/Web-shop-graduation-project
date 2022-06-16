@@ -14,15 +14,15 @@
 <body>
 <div th:insert="~{fragments/menu :: #nav-menu}"></div>
 
-<table border="1" align="center" id="table">
-    <tr>
-        <td>Category</td>
-    </tr>
-    <tr th:each="category : ${categories}">
-        <td th:text="${category.title}"></td>
+<!--<table border="1" align="center" id="table">-->
+<!--    <tr>-->
+<!--        <td>Category</td>-->
+<!--    </tr>-->
+<!--    <tr th:each="category : ${categories}">-->
+<!--        <td th:text="${category.title}"></td>-->
 
-    </tr>
-</table>
+<!--    </tr>-->
+<!--</table>-->
 
 <aside class="sidebar hidden-xs col-sm-4 col-md-3">
        <div class="menu-categories">
@@ -31,27 +31,30 @@
                    <a target="_self" href="@{/products/protein">Протеин</a>
                </li>
                <li>
-                   <a target="_self" href="/#">Креатин</a>
+                   <a target="_self" href="@{/products/creatin">Креатин</a>
                </li>
                <li>
-                   <a target="_self" href="/#">Бца</a>
+                   <a target="_self" href="@{/products/bca">Бца</a>
                </li>
            </ul>
        </div>
 </aside>
 
 
-
-
 <table border="1" align="center" id="table1">
     <tr>
         <td>Title</td>
         <td>Price</td>
-        <td></td>
+        <td>Image</td>
+
     </tr>
     <tr th:each="product : ${products}" >
+
         <td th:text="${product.title}"></td>
         <td th:text="${product.price}"></td>
+<!--        <td><img src="${product.image}" alt=""> </td>-->
+        <td><img src="https://images.deal.by/253959103_w640_h640_energetiki-i-izotoniki.jpg" alt=""> </td>
+
         <td sec:authorize="isAuthenticated()"><a th:href="@{/products/{id}/bucket(id=${product.id})}">Add to bucket</a></td>
         <td sec:authorize="!isAuthenticated()"><a> Please <a th:href="@{/login}">Login</a></a></td>
     </tr>
@@ -59,7 +62,7 @@
 
 
 
-<td sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')">
+<td sec:authorize="hasAnyAuthority('ADMIN')">
 
 
 <form style="text-align: center">
