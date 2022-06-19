@@ -124,13 +124,13 @@ public class BucketServiceImpl implements BucketService {
                 .map(pair -> new OrderDetails(order, pair.getKey(), pair.getValue()))
                 .collect(Collectors.toList());
 
-        BigDecimal total = BigDecimal.valueOf(orderDetails.stream()
+        BigDecimal total = new  BigDecimal (orderDetails.stream()
                 .map(detail -> detail.getPrice().multiply(detail.getAmount()))
                 .mapToDouble(BigDecimal::doubleValue).sum());
 
-        order.setDetails(orderDetails);
+       // order.setDetails(orderDetails);
         order.setSum(total);
-        order.setAddress("none");
+        order.setAddress("empty");
 
         orderService.saveOrder(order);
         bucket.getProducts().clear();

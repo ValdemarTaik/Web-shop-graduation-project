@@ -21,4 +21,6 @@ public class CategoriesServiceImpl implements CategoriesService{
     public List<CategoriesDto> getAll() {
         return mapper.fromCategoryList(categoriesRepository.findAll());
     }
+
+
 }

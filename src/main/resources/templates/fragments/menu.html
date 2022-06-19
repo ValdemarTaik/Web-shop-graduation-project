@@ -3,40 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="templates/style/style.css">
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        header {
+            width: 100%;
+            background: dimgrey;
+
+            height: 70px;
+            position: fixed;
+        }
+
+        .header-bg {
+            background: url("https://catherineasquithgallery.com/uploads/posts/2021-02/1612472939_77-p-fon-dlya-prezentatsii-v-serikh-tonakh-89.jpg");
+            height: 405px;
+            text-align: center;
+        }
+
+        .header-bg img {
+            position: relative;
+            top: 40px;
+        }
+        .py-2 {color: black; }
+    </style>
 </head>
+
 <body>
-<table id="nav-menu" width="100%">
-    <tr>
-        <td align="center">
-            <table>
-                <tr>
 
-                    <td><a th:href="@{/}">Home</a></td>
-                    <td><a th:href="@{/products}">Products</a></td>
-                    <td sec:authorize="hasAnyAuthority('ADMIN')"><a th:href="@{/users}">Users</a></td>
-                    <td sec:authorize="isAuthenticated()"><a th:href="@{/bucket}">Bucket</a></td>
-                </tr>
-            </table>
-        </td>
-        <td align="right">
-            <div sec:authorize="isAuthenticated()">
-                <div>
-                    <!-- по имени находим нужный нам профайл-->
-                    Hello, <a th:href="@{/users/profile}"><span sec:authentication="principal.username"></span></a>
-                </div>
-                <div>
-                    <a th:href="@{/logout}">Logout</a>
-                </div>
-            </div>
+<a class="header-bg">
+    <table id="nav-menu" width="100%">
 
-            <div sec:authorize="!isAuthenticated()">
-                <div>
-                    Hello, Unknown. Please <a th:href="@{/login}">Login</a>, or <a th:href="@{/registration}">Registration</a>
-                </div>
-            </div>
-        </td>
 
-    </tr>
-</table>
+        <header class="site-header sticky-top py-1">
+
+
+            <nav class="container d-flex flex-column flex-md-row justify-content-between color:black">
+                <a class="py-2" th:href="@{/}" aria-label="Home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto"
+                         role="img" viewBox="0 0 24 24"><title>Product</title>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path   d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path>
+                    </svg>
+                </a>
+
+
+                <a class="btn btn-secondary" title="Каталог товаров спортивного питания" href="/products/">
+                    <svg height="16" width="16" fill="#CEDC01" viewBox="0 0 512.646 512.646">
+                        <path d="M480 279.365V250c0-16.542-13.458-30-30-30h-88c-3.506 0-6.87.61-10 1.72v-39.579c0-50.197-35.073-92.355-82-103.259V30c0-16.542-13.458-30-30-30H112C95.458 0 82 13.458 82 30v48.882C35.073 89.786 0 131.944 0 182.141v255.87C0 478.809 33.191 512 73.989 512H278.01a74.13 74.13 0 0039.904-11.691C326.604 507.599 337.796 512 350 512h112c27.57 0 50-22.43 50-50V326c0-21.226-13.301-39.392-32-46.635zM362 240h88c5.514 0 10 4.486 10 10v26H352v-26c0-5.514 4.486-10 10-10zM250 30v46.141h-20V20h10c5.514 0 10 4.486 10 10zM142 76.141V20h24v56.141zM186 20h24v56.141h-24zm-84 56.141V30c0-5.514 4.486-10 10-10h10v56.141zm4 20h140c44.036 0 80.427 33.276 85.4 76H221c-5.523 0-10 4.477-10 10s4.477 10 10 10h111v87.224c-18.699 7.243-32 25.409-32 46.635v102.011H20v-235.87h111c5.523 0 10-4.477 10-10s-4.477-10-10-10H20.6c4.973-42.724 41.364-76 85.4-76zM73.989 492c-26.352 0-48.341-18.983-53.046-43.989H300V462c0 8.104 1.95 15.757 5.388 22.534A54.082 54.082 0 01278.011 492zM492 462c0 16.542-13.458 30-30 30H350c-16.542 0-30-13.458-30-30V326c0-16.542 13.458-30 30-30h112c16.542 0 30 13.458 30 30z"></path>
+                    </svg>
+                    <span>Каталог</span></a>
+
+                <a class="btn btn-secondary" title="Доставка и оплата" href="/delivery/">
+                    <svg viewBox="0 0 491.1 491.1" width="16" height="16">
+                        <path transform="translate(0 -540.36)" d="M401.5,863.31c-12,0-23.4,4.7-32,13.2c-8.6,8.6-13.4,19.8-13.4,31.8s4.7,23.2,13.4,31.8
+	c8.7,8.5,20,13.2,32,13.2c24.6,0,44.6-20.2,44.6-45S426.1,863.31,401.5,863.31z M401.5,933.31c-13.8,0-25.4-11.4-25.4-25
+	s11.6-25,25.4-25c13.6,0,24.6,11.2,24.6,25S415.1,933.31,401.5,933.31z M413.1,713.41c-1.8-1.7-4.2-2.6-6.7-2.6h-51.3
+	c-5.5,0-10,4.5-10,10v82c0,5.5,4.5,10,10,10h81.4c5.5,0,10-4.5,10-10v-54.9c0-2.8-1.2-5.5-3.3-7.4L413.1,713.41z M426.5,792.81
+	h-61.4v-62.1h37.4l24,21.6V792.81z M157.3,863.31c-12,0-23.4,4.7-32,13.2c-8.6,8.6-13.4,19.8-13.4,31.8s4.7,23.2,13.4,31.8
+	c8.7,8.5,20,13.2,32,13.2c24.6,0,44.6-20.2,44.6-45S181.9,863.31,157.3,863.31z M157.3,933.31c-13.8,0-25.4-11.4-25.4-25
+	s11.6-25,25.4-25c13.6,0,24.6,11.2,24.6,25S170.9,933.31,157.3,933.31z M90.6,875.61H70.5v-26.6c0-5.5-4.5-10-10-10s-10,4.5-10,10
+	v36.6c0,5.5,4.5,10,10,10h30.1c5.5,0,10-4.5,10-10S96.1,875.61,90.6,875.61z M141.3,821.11c0-5.5-4.5-10-10-10H10
+	c-5.5,0-10,4.5-10,10s4.5,10,10,10h121.3C136.8,831.11,141.3,826.71,141.3,821.11z M30.3,785.01l121.3,0.7c5.5,0,10-4.4,10.1-9.9
+	c0.1-5.6-4.4-10.1-9.9-10.1l-121.3-0.7c-0.1,0-0.1,0-0.1,0c-5.5,0-10,4.4-10,9.9C20.3,780.51,24.8,785.01,30.3,785.01z M50.7,739.61
+	H172c5.5,0,10-4.5,10-10s-4.5-10-10-10H50.7c-5.5,0-10,4.5-10,10S45.2,739.61,50.7,739.61z M487.4,726.11L487.4,726.11l-71.6-59.3
+	c-1.8-1.5-4-2.3-6.4-2.3h-84.2v-36c0-5.5-4.5-10-10-10H60.5c-5.5,0-10,4.5-10,10v73.2c0,5.5,4.5,10,10,10s10-4.5,10-10v-63.2h234.8
+	v237.1h-82c-5.5,0-10,4.5-10,10s4.5,10,10,10h122.1c5.5,0,10-4.5,10-10s-4.5-10-10-10h-20.1v-191.1h80.6l65.2,54l-0.7,136.9H460
+	c-5.5,0-10,4.5-10,10s4.5,10,10,10h20.3c5.5,0,10-4.4,10-9.9l0.8-151.6C491,730.91,489.7,728.01,487.4,726.11z"></path>
+                    </svg>
+                    <span>Доставка и оплата</span>
+                </a>
+
+                <a class="btn btn-secondary" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">Users</a>
+
+
+                <a class="btn btn-secondary" title="Контактная информация" href="/contacts/">
+                    <svg viewBox="0 0 512 512" width="16" height="16">
+                        <path d="M432.701,317.247l-82.913-97.484l73.645-42.016c7.196-4.104,9.701-13.266,5.597-20.461
+			c-4.105-7.196-13.269-9.702-20.462-5.597c-6.158,3.513-145.713,83.13-152.567,87.041c-6.888-3.93-146.476-83.566-152.567-87.041
+			c-7.196-4.104-16.355-1.601-20.462,5.597c-4.104,7.195-1.6,16.356,5.597,20.461l73.645,42.016L79.3,317.247
+			c-5.367,6.311-4.603,15.776,1.708,21.144c6.31,5.369,15.78,4.601,21.144-1.708l86.577-101.792l59.839,34.139
+			c4.607,2.628,10.26,2.627,14.865,0l59.839-34.139l86.577,101.792c5.368,6.313,14.838,7.073,21.144,1.708
+			C437.304,333.024,438.068,323.558,432.701,317.247z"></path>
+
+                        <path d="M467,81H45c-24.813,0-45,20.187-45,45v260c0,24.813,20.187,45,45,45h422c24.813,0,45-20.187,45-45V126
+			C512,101.187,491.813,81,467,81z M482,386c0,8.271-6.729,15-15,15H45c-8.271,0-15-6.729-15-15V126c0-8.271,6.729-15,15-15h422
+			c8.271,0,15,6.729,15,15V386z"></path>
+
+                    </svg>
+                    <span>Контакты</span>
+                </a>
+
+
+                <a class="py-2 d-none d-md-inline-block" sec:authorize="isAuthenticated()">
+                    <button type="button" class="toggle" onclick="window.location.href = '/bucket'">
+                        <svg height="30" width="30" viewBox="0 0 511.999 511.999">
+                            <path d="M214.685 402.828c-24.829 0-45.029 20.2-45.029 45.029 0 24.829 20.2 45.029 45.029 45.029s45.029-20.2 45.029-45.029c-.001-24.829-20.201-45.029-45.029-45.029zm0 64.914c-10.966 0-19.887-8.922-19.887-19.887 0-10.966 8.922-19.887 19.887-19.887s19.887 8.922 19.887 19.887c0 10.967-8.922 19.887-19.887 19.887zM372.63 402.828c-24.829 0-45.029 20.2-45.029 45.029 0 24.829 20.2 45.029 45.029 45.029s45.029-20.2 45.029-45.029c-.001-24.829-20.201-45.029-45.029-45.029zm0 64.914c-10.966 0-19.887-8.922-19.887-19.887 0-10.966 8.922-19.887 19.887-19.887 10.966 0 19.887 8.922 19.887 19.887 0 10.967-8.922 19.887-19.887 19.887zM383.716 165.755H203.567c-6.943 0-12.571 5.628-12.571 12.571s5.629 12.571 12.571 12.571h180.149c6.943 0 12.571-5.628 12.571-12.571 0-6.944-5.628-12.571-12.571-12.571zM373.911 231.035H213.373c-6.943 0-12.571 5.628-12.571 12.571s5.628 12.571 12.571 12.571H373.91c6.943 0 12.571-5.628 12.571-12.571 0-6.942-5.628-12.571-12.57-12.571z"></path>
+                            <path d="M506.341 109.744a25.04 25.04 0 00-19.489-9.258H95.278L87.37 62.097a25.173 25.173 0 00-14.614-17.989l-55.177-23.95c-6.37-2.767-13.773.156-16.536 6.524-2.766 6.37.157 13.774 6.524 16.537L62.745 67.17l60.826 295.261c2.396 11.628 12.752 20.068 24.625 20.068h301.166c6.943 0 12.571-5.628 12.571-12.571s-5.628-12.571-12.571-12.571H148.197l-7.399-35.916H451.69c11.872 0 22.229-8.44 24.624-20.068l35.163-170.675a25.043 25.043 0 00-5.136-20.954zM451.69 296.301H135.619l-35.161-170.674 386.393.001-35.161 170.673z"></path>
+                        </svg>
+                        <a th:href="@{/bucket}"></a>
+                    </button>
+                </a>
+
+                <a class="py-2 d-none d-md-inline-block" align="right" sec:authorize="isAuthenticated()">
+                    <div>
+                        <a class="btn btn-secondary">
+                        <!-- по имени находим нужный нам профайл-->
+                        Hello, <a class="btn btn-secondary"  th:href="@{/users/profile}"><span sec:authentication="principal.username"></span></a>
+                </a>
+
+                        <a class="btn btn-secondary" th:href="@{/logout}">Logout</a>
+                    </div>
+
+                </a>
+
+                <a class="btn btn-secondary" sec:authorize="!isAuthenticated()">
+                    <div>
+                        Hello, Unknown. Please <a class="btn btn-secondary" th:href="@{/login}"> Login</a>, or <a class="btn btn-secondary" th:href="@{/registration}">Registration</a>
+                    </div>
+                </a>
+            </nav>
+
+        </header>
+
+
+    </table>
+    </div>
+
+    <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+</a>
+
 </body>
 </html>

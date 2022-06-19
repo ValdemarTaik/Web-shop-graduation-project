@@ -30,14 +30,14 @@ public class Order {
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
-    private LocalDateTime updated;
+    private LocalDateTime changed;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     private BigDecimal sum;
     private String address;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<OrderDetails> details;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private List<OrderDetails> details;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 

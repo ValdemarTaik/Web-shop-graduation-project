@@ -30,4 +30,10 @@ public class MainController {
         modelAndView.addObject("user", new UserDto());
         return modelAndView;
     }
+
+    @RequestMapping("/delivery")
+    public String delivery(){return "deliveryPage";}
+
+    @RequestMapping("/contacts")
+    public String contacts(){return "contacts";}
 }
