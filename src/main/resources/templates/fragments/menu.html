@@ -13,7 +13,7 @@
 
         header {
             width: 100%;
-            background: dimgrey;
+            background-image: url("https://catherineasquithgallery.com/uploads/posts/2021-02/1612472939_77-p-fon-dlya-prezentatsii-v-serikh-tonakh-89.jpg");
 
             height: 70px;
             position: fixed;
@@ -29,38 +29,41 @@
             position: relative;
             top: 40px;
         }
-        .py-2 {color: black; }
+
+        .py-2 {
+            color: yellow;
+        }
     </style>
 </head>
 
 <body>
 
-<a class="header-bg">
-    <table id="nav-menu" width="100%">
+
+<table id="nav-menu" width="100%">
+    <a class="header-bg">
+
+        <header>
 
 
-        <header class="site-header sticky-top py-1">
-
-
-            <nav class="container d-flex flex-column flex-md-row justify-content-between color:black">
+            <nav class="navbar navbar-dark bg-dark">
                 <a class="py-2" th:href="@{/}" aria-label="Home">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto"
                          role="img" viewBox="0 0 24 24"><title>Product</title>
                         <circle cx="12" cy="12" r="10"></circle>
-                        <path   d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path>
+                        <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path>
                     </svg>
                 </a>
 
 
-                <a class="btn btn-secondary" title="Каталог товаров спортивного питания" href="/products/">
-                    <svg height="16" width="16" fill="#CEDC01" viewBox="0 0 512.646 512.646">
+                <a class="btn btn-dark" title="Каталог товаров спортивного питания" href="/products/">
+                    <svg height="16" width="16" fill="#CEDC01" viewBox="0 0 512.646 512.646" color="yellow">
                         <path d="M480 279.365V250c0-16.542-13.458-30-30-30h-88c-3.506 0-6.87.61-10 1.72v-39.579c0-50.197-35.073-92.355-82-103.259V30c0-16.542-13.458-30-30-30H112C95.458 0 82 13.458 82 30v48.882C35.073 89.786 0 131.944 0 182.141v255.87C0 478.809 33.191 512 73.989 512H278.01a74.13 74.13 0 0039.904-11.691C326.604 507.599 337.796 512 350 512h112c27.57 0 50-22.43 50-50V326c0-21.226-13.301-39.392-32-46.635zM362 240h88c5.514 0 10 4.486 10 10v26H352v-26c0-5.514 4.486-10 10-10zM250 30v46.141h-20V20h10c5.514 0 10 4.486 10 10zM142 76.141V20h24v56.141zM186 20h24v56.141h-24zm-84 56.141V30c0-5.514 4.486-10 10-10h10v56.141zm4 20h140c44.036 0 80.427 33.276 85.4 76H221c-5.523 0-10 4.477-10 10s4.477 10 10 10h111v87.224c-18.699 7.243-32 25.409-32 46.635v102.011H20v-235.87h111c5.523 0 10-4.477 10-10s-4.477-10-10-10H20.6c4.973-42.724 41.364-76 85.4-76zM73.989 492c-26.352 0-48.341-18.983-53.046-43.989H300V462c0 8.104 1.95 15.757 5.388 22.534A54.082 54.082 0 01278.011 492zM492 462c0 16.542-13.458 30-30 30H350c-16.542 0-30-13.458-30-30V326c0-16.542 13.458-30 30-30h112c16.542 0 30 13.458 30 30z"></path>
                     </svg>
                     <span>Каталог</span></a>
 
-                <a class="btn btn-secondary" title="Доставка и оплата" href="/delivery/">
-                    <svg viewBox="0 0 491.1 491.1" width="16" height="16">
+                <a class="btn btn-dark" title="Доставка и оплата" href="/delivery/">
+                    <svg viewBox="0 0 491.1 491.1" width="16" height="16" color="red">
                         <path transform="translate(0 -540.36)" d="M401.5,863.31c-12,0-23.4,4.7-32,13.2c-8.6,8.6-13.4,19.8-13.4,31.8s4.7,23.2,13.4,31.8
 	c8.7,8.5,20,13.2,32,13.2c24.6,0,44.6-20.2,44.6-45S426.1,863.31,401.5,863.31z M401.5,933.31c-13.8,0-25.4-11.4-25.4-25
 	s11.6-25,25.4-25c13.6,0,24.6,11.2,24.6,25S415.1,933.31,401.5,933.31z M413.1,713.41c-1.8-1.7-4.2-2.6-6.7-2.6h-51.3
@@ -79,11 +82,11 @@
                     <span>Доставка и оплата</span>
                 </a>
 
-                <a class="btn btn-secondary" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">Users</a>
+                <a class="btn btn-dark" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/users}">Users</a>
 
 
-                <a class="btn btn-secondary" title="Контактная информация" href="/contacts/">
-                    <svg viewBox="0 0 512 512" width="16" height="16">
+                <a class="btn btn-dark" title="Контактная информация" href="/contacts/">
+                    <svg viewBox="0 0 512 512" width="16" height="16" color="yellow">
                         <path d="M432.701,317.247l-82.913-97.484l73.645-42.016c7.196-4.104,9.701-13.266,5.597-20.461
 			c-4.105-7.196-13.269-9.702-20.462-5.597c-6.158,3.513-145.713,83.13-152.567,87.041c-6.888-3.93-146.476-83.566-152.567-87.041
 			c-7.196-4.104-16.355-1.601-20.462,5.597c-4.104,7.195-1.6,16.356,5.597,20.461l73.645,42.016L79.3,317.247
@@ -112,19 +115,21 @@
 
                 <a class="py-2 d-none d-md-inline-block" align="right" sec:authorize="isAuthenticated()">
                     <div>
-                        <a class="btn btn-secondary">
-                        <!-- по имени находим нужный нам профайл-->
-                        Hello, <a class="btn btn-secondary"  th:href="@{/users/profile}"><span sec:authentication="principal.username"></span></a>
-                </a>
+                        <a class="btn btn-dark">
+                            <!-- по имени находим нужный нам профайл-->
+                            Hello, <a class="btn btn-dark" th:href="@{/users/profile}"><span
+                                sec:authentication="principal.username"></span></a>
+                        </a>
 
-                        <a class="btn btn-secondary" th:href="@{/logout}">Logout</a>
+                        <a class="btn btn-dark" th:href="@{/logout}">Logout</a>
                     </div>
 
                 </a>
 
-                <a class="btn btn-secondary" sec:authorize="!isAuthenticated()">
+                <a class="btn btn-dark" sec:authorize="!isAuthenticated()">
                     <div>
-                        Hello, Unknown. Please <a class="btn btn-secondary" th:href="@{/login}"> Login</a>, or <a class="btn btn-secondary" th:href="@{/registration}">Registration</a>
+                        Hello, Unknown. Please <a class="btn btn-dark" th:href="@{/login}"> Login</a>, or <a
+                            class="btn btn-secondary" th:href="@{/registration}">Registration</a>
                     </div>
                 </a>
             </nav>
@@ -132,12 +137,12 @@
         </header>
 
 
-    </table>
-    </div>
+</table>
+</div>
 
-    <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-            crossorigin="anonymous"></script>
+<script src="/docs/5.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
 </a>
 
 </body>

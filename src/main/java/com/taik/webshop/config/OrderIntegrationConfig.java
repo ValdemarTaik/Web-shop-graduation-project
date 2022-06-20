@@ -15,7 +15,7 @@ public class OrderIntegrationConfig {
         this.ordersChannel = ordersChannel;
     }
 
-    public DirectChannel getOrdersChannel(){
+    public DirectChannel getOrdersChannel() {
         return ordersChannel;
     }
 

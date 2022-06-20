@@ -1,6 +1,6 @@
 package com.taik.webshop.service;
 
-import com.taik.webshop.domain.Category;
+//import com.taik.webshop.domain.Category;
 import com.taik.webshop.dto.ProductDto;
 
 import java.util.List;
@@ -11,5 +11,5 @@ public interface ProductService {
     void deleteFromUserBucketProduct(Long productId, String username);
     ProductDto getById(Long id);
 
-    List<ProductDto> getProductByCategory(Category category);
+    List<ProductDto> getProductByCategory(Long id);
 }

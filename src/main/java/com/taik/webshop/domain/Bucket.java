@@ -31,7 +31,6 @@ public class Bucket {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 
-
 }
 
 

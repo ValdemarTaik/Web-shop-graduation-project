@@ -1,9 +1,11 @@
 package com.taik.webshop.controllers;
 
 
+//import com.taik.webshop.domain.Category;
+
 import com.taik.webshop.dto.CategoriesDto;
 import com.taik.webshop.dto.ProductDto;
-import com.taik.webshop.service.CategoriesService;
+//import com.taik.webshop.service.CategoriesService;
 import com.taik.webshop.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,20 +22,20 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-    private final CategoriesService categoriesService;
+//    private final CategoriesService categoriesService;
 
 
-    public ProductController(ProductService productService, CategoriesService categoriesService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
-        this.categoriesService = categoriesService;
+        //   this.categoriesService = categoriesService;
     }
 
     @GetMapping
     public String list(Model model) {
         List<ProductDto> listProducts = productService.getAll();
-        List<CategoriesDto> listCategories = categoriesService.getAll();
+//        List<CategoriesDto> listCategories = categoriesService.getAll();
         model.addAttribute("products", listProducts);
-        model.addAttribute("categories", listCategories);
+//        model.addAttribute("categories", listCategories);
         return "products";
     }
 
@@ -46,7 +48,6 @@ public class ProductController {
         productService.addToUserBucket(id, principal.getName());
         return "redirect:/products";
     }
-
 
 
     //new
@@ -68,34 +69,54 @@ public class ProductController {
     //вывод под категории
     @GetMapping("/protein")
     public String listByProtein(Model model) {
-        Long SQL = Long.valueOf("SELECT product_id from products_categories WHERE category_id = '1' ");
-
-
-//        List<ProductDto> listProducts = productService.getById();
-//        for (ProductDto p : listProducts) {
-//        if ( p.getId())
-//        }
-
-//        List<CategoriesDto> listCategories = categoriesService.getAll();
-//        model.addAttribute("products", listProducts);
-
-        return "products/protein";
+//        Category category = new Category();
+//        category.setTitle("Protein");
+        List<ProductDto> listProductsByProtein = productService.getProductByCategory(1L);
+        model.addAttribute("products", listProductsByProtein);
+        return "products";
     }
+
 
     @GetMapping("/creatin")
     public String listByCreatin(Model model) {
-        Long SQL = Long.valueOf("SELECT product_id from products_categories WHERE category_id = '2' ");
-
-
-        return "products/creatin";
+        List<ProductDto> listProductsByProtein = productService.getProductByCategory(2L);
+        model.addAttribute("products", listProductsByProtein);
+        return "products";
     }
 
     @GetMapping("/bca")
     public String listByBca(Model model) {
-        Long SQL = Long.valueOf("SELECT product_id from products_categories WHERE category_id = '3' ");
+        List<ProductDto> listProductsByProtein = productService.getProductByCategory(3L);
+        model.addAttribute("products", listProductsByProtein);
+        return "products";
+    }
 
+    @GetMapping("/vitamins")
+    public String listByVitamins(Model model) {
+        List<ProductDto> listProductsByProtein = productService.getProductByCategory(4L);
+        model.addAttribute("products", listProductsByProtein);
+        return "products";
+    }
 
-        return "products/bca";
+    @GetMapping("/fatBurners")
+    public String listByFatBurners(Model model) {
+        List<ProductDto> listProductsByProtein = productService.getProductByCategory(5L);
+        model.addAttribute("products", listProductsByProtein);
+        return "products";
+    }
+
+    @GetMapping("/shakersBottles")
+    public String listByShakersBottles(Model model) {
+        List<ProductDto> listProductsByProtein = productService.getProductByCategory(6L);
+        model.addAttribute("products", listProductsByProtein);
+        return "products";
+    }
+
+    @GetMapping("/accessories")
+    public String listByaccessories(Model model) {
+        List<ProductDto> listProductsByProtein = productService.getProductByCategory(7L);
+        model.addAttribute("products", listProductsByProtein);
+        return "products";
     }
 
 

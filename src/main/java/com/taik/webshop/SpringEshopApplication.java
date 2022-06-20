@@ -12,7 +12,6 @@ public class SpringEshopApplication {
 
         ConfigurableApplicationContext context = SpringApplication.run(SpringEshopApplication.class, args);
 
-
     }
 }
 

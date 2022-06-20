@@ -32,8 +32,12 @@ public class MainController {
     }
 
     @RequestMapping("/delivery")
-    public String delivery(){return "deliveryPage";}
+    public String delivery() {
+        return "deliveryPage";
+    }
 
     @RequestMapping("/contacts")
-    public String contacts(){return "contacts";}
+    public String contacts() {
+        return "contacts";
+    }
 }

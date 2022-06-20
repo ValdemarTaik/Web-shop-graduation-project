@@ -28,7 +28,6 @@ public class UserController {
         return "userList";
     }
 
-
     @GetMapping("/new")
     public String newUser(Model model) {
         System.out.println("Called method newUser");
@@ -36,14 +35,6 @@ public class UserController {
         return "user";
     }
 
-//    @PostAuthorize("isAuthenticated() and #username == authentication.principal.username")
-//    @GetMapping("/{name}/roles")
-//    @ResponseBody
-//    public String getRoles(@PathVariable("name") String username) {
-//        System.out.println("Called method getRoles");
-//        User byName = userService.findByName(username);
-//        return byName.getRole().name();
-//    }
 
     @PostMapping("/new")
     public String saveUser(UserDto dto, Model model) {
@@ -88,5 +79,4 @@ public class UserController {
         userService.updateProfile(dto);
         return "redirect:/users/profile";
     }
-
 }

@@ -65,6 +65,8 @@ public class BucketServiceImpl implements BucketService {
     @Override
     @javax.transaction.Transactional
     public void deleteProducts(Bucket bucket, List<Long> productIds) {
+
+
         List<Product> products = bucket.getProducts();
         List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
         newProductsList.remove(productIds);
@@ -76,7 +78,7 @@ public class BucketServiceImpl implements BucketService {
     @Override
     public BucketDto getBucketByUser(String name) {
         User user = userService.findByName(name);
-        if(user == null || user.getBucket() == null){
+        if (user == null || user.getBucket() == null) {
             return new BucketDto();
         }
 
@@ -86,10 +88,9 @@ public class BucketServiceImpl implements BucketService {
         List<Product> products = user.getBucket().getProducts();
         for (Product product : products) {
             BucketDetailDto detail = mapByProductId.get(product.getId());
-            if(detail == null){
+            if (detail == null) {
                 mapByProductId.put(product.getId(), new BucketDetailDto(product));
-            }
-            else {
+            } else {
                 detail.setAmount(detail.getAmount() + 1.0);
                 detail.setSum(detail.getSum() + product.getPrice());
             }
@@ -105,11 +106,11 @@ public class BucketServiceImpl implements BucketService {
     @Transactional
     public void commitBucketToOrder(String username) {
         User user = userService.findByName(username);
-        if(user == null){
+        if (user == null) {
             throw new RuntimeException("User is not found");
         }
         Bucket bucket = user.getBucket();
-        if(bucket == null || bucket.getProducts().isEmpty()){
+        if (bucket == null || bucket.getProducts().isEmpty()) {
             return;
         }
 
@@ -124,11 +125,11 @@ public class BucketServiceImpl implements BucketService {
                 .map(pair -> new OrderDetails(order, pair.getKey(), pair.getValue()))
                 .collect(Collectors.toList());
 
-        BigDecimal total = new  BigDecimal (orderDetails.stream()
+        BigDecimal total = new BigDecimal(orderDetails.stream()
                 .map(detail -> detail.getPrice().multiply(detail.getAmount()))
                 .mapToDouble(BigDecimal::doubleValue).sum());
 
-       // order.setDetails(orderDetails);
+        // order.setDetails(orderDetails);
         order.setSum(total);
         order.setAddress("empty");
 

@@ -58,16 +58,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
 
-                     .formLogin()
-                     .loginPage("/login")
-                     .failureUrl("/login-error")
-                     .loginProcessingUrl("/auth")
-                     .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login-error")
+                .loginProcessingUrl("/auth")
+                .permitAll()
                 .and()
-                     .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                     .logoutSuccessUrl("/").deleteCookies("JSESSIONID")
-                     .invalidateHttpSession(true)
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/").deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
                 .and()
-                     .csrf().disable();
+                .csrf().disable();
     }
 }
