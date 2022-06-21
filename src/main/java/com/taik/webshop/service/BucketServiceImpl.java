@@ -5,7 +5,6 @@ import com.taik.webshop.dao.ProductRepository;
 import com.taik.webshop.domain.*;
 import com.taik.webshop.dto.BucketDetailDto;
 import com.taik.webshop.dto.BucketDto;
-import com.taik.webshop.dto.ProductDto;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 @Service

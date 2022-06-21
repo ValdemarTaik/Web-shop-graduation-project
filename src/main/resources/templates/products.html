@@ -103,16 +103,9 @@
         <td th:text="${product.title}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.category}"></td>
-<!--                <td th:text="${product.image}"></td>-->
-        <td><img src="${#conversion.convert(product.image, 'Long') }"  width="150" height="150" alt=""> </td>
-<!--                <td><img src="${product.image}"  width="150" height="150" alt=""> </td>-->
-<!--        <td><img src="https://bbr.in.ua/upload/iblock/d76/d76d665f6335c90b5dbbc7bb0dbe6ab1.jpg" width="150" height="150"-->
-<!--                 alt=""></td>-->
-        <!--        <td><img path="${product.image}" alt=""> </td>-->
 
+        <td><img th:src="${product.image}"  width="150" height="150" alt=""> </td>
 
-        <!--        <td><img src="${product.image}" alt=""> </td>-->
-        <!--        <td><img src="https://images.deal.by/253959103_w640_h640_energetiki-i-izotoniki.jpg" alt=""> </td>-->
 
         <td sec:authorize="isAuthenticated()"><a class="btn btn-outline-secondary"
                                                  th:href="@{/products/{id}/bucket(id=${product.id})}">Add to bucket</a>

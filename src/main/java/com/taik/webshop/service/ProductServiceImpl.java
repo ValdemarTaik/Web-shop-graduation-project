@@ -20,7 +20,6 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final UserService userService;
     private final BucketService bucketService;
-    // private final SimpMessagingTemplate template;
 
     public ProductServiceImpl(ProductRepository productRepository,
                               UserService userService,
